@@ -4,8 +4,10 @@
   "description": "Backend app for City Explorer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node server.js"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stefrie/cityexplorer-api.git"
@@ -17,8 +19,12 @@
   },
   "homepage": "https://github.com/stefrie/cityexplorer-api#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
