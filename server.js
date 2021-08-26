@@ -2,9 +2,9 @@
 
 const express = require('express');
 const cors = require('cors');
-const weatherData = require('./data/weather.json')
+// const weatherData = require('./data/weather.json')
 require('dotenv').config();
-// const axios = require('axios');
+const axios = require('axios');
 // const { fetchWeather, fetchMovies, fetchYelp } = require('/api-fetcher');
 // const notFound = require('./notFound);
 
@@ -33,15 +33,17 @@ app.get('/weather', (request, response) => {
 	// const lat = request.query.lat;
 	// const lon = request.query.lon;
 	const searchQuery = request.query.searchQuery;
-	const cityObject = weatherData.find (city => city.city_name === searchQuery);
+	// const cityObject = weatherData.find (city => city.city_name === searchQuery);
 	
+	const url = `https://api.weatherbit.io/v2.0/current=${process.env.WEATHER_API_KEY}&query=${searchQuery}`;
+
 	try {
-		// const apiResponse = await axios.get(url);
-		const forecast = cityObject.data.map(day => new Forecast(day));
+		const apiResponse = await axios.get(url);
+		const forecast = apiResponse.data.map(day => new Forecast(day));
 		response.send(forecast);	
 	} catch (error) {
 		console.log(error);
-		response.status(500).send('error');
+		response.status(500).send('server error');
 	}
 })
 
