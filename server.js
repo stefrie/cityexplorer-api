@@ -2,24 +2,20 @@
 
 const express = require('express');
 const cors = require('cors');
-// const weatherData = require('./data/weather.json')
 require('dotenv').config();
 const axios = require('axios');
+// (delete?) const weatherData = require('./data/weather.json')
 // const { fetchWeather, fetchMovies, fetchYelp } = require('/api-fetcher');
 // const notFound = require('./notFound);
 
 // const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchQuery}&format=json`; 
-
-const app = express();
-
-// make sure to use dotenv.config BEFORE you use const PORT
-app.use(cors());
-
 const PORT = process.env.PORT || 3001; 
+const app = express();
+app.use(cors());
 
 // routes
 // app.get('/weather', fetchWeather);
-// app.get('/)
+// app.get('/movies, fetchMovies);
 
 // use this code when putting routes into separate modules to reference into the module, 
 // then turn the app.get into a function
@@ -27,25 +23,29 @@ const PORT = process.env.PORT || 3001;
 // async function fetchWeather(request, response) {
 // 		<add console.log down through try/catch block>
 // }
+app.get('/weather', getWeather);
 
-app.get('/weather', (request, response) => {
+async function getWeather (request, response) {
 	console.log(request.query)
 	// const lat = request.query.lat;
 	// const lon = request.query.lon;
+	console.log(process.env.WEATHER_API_KEY);
+
 	const searchQuery = request.query.searchQuery;
-	// const cityObject = weatherData.find (city => city.city_name === searchQuery);
-	
-	const url = `https://api.weatherbit.io/v2.0/current=${process.env.WEATHER_API_KEY}&query=${searchQuery}`;
+	// (delete?) const cityObject = weatherData.find (city => city.city_name === searchQuery);
+		const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${searchQuery}&days=5`;
 
 	try {
 		const apiResponse = await axios.get(url);
-		const forecast = apiResponse.data.map(day => new Forecast(day));
+		console.log(apiResponse.data.data);
+		const forecast = apiResponse.data.data.map(day => new Forecast(day));
+		
 		response.send(forecast);	
 	} catch (error) {
 		console.log(error);
 		response.status(500).send('server error');
 	}
-})
+}
 
 class Forecast {
 	constructor(day) {
