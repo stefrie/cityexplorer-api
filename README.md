@@ -1,4 +1,4 @@
-# cityexplorer-api
+# City Explorer API
 Backend server for City Explorer
 
 **Author**: Stefanie Riehle
@@ -21,10 +21,9 @@ npm express, dotenv, cors
 | Time Estimate | Name of Feature | Start Time | Finish Time | Actual Time Needed | Collaborators |
 |:-------------:|:---------------:|------------|-------------|--------------------|---------------|
 | 1 hour        | Lab 07 - Task 1 | 4:45pm     | 5:00pm      | 15 minutes!        |               |
+| No estimate | Lab 07 - Tasks 2, 3 | ??? | 1:00pm | Endless Hours | Hexx King, Antoine Charette, Haustin Kimbrough |
+| 4 hours | Lab 08 | 3:30pm |  |  | Antoine Charette |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-
