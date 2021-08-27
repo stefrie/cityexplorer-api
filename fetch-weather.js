@@ -1,4 +1,5 @@
 const axios = require('axios');
+const inMemoryDB = require('./cache');
 
 async function fetchWeather (request, response) {
 	console.log(request.query)
@@ -28,4 +29,4 @@ class Forecast {
 }
 
 
-module.exports = './fetch-weather';
+module.exports = fetchWeather;

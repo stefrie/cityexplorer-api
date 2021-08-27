@@ -1,5 +1,5 @@
 const axios = require('axios');
-
+const inMemoryDB = require('./cache');
 
 async function fetchMovies (request, response) {
 	const searchQuery = request.query.searchQuery;
@@ -27,4 +27,4 @@ class MovieList {
 	};
 }
 
-module.exports = './fetch-movies';
+module.exports = fetchMovies;
