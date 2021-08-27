@@ -23,6 +23,8 @@ app.use(cors());
 // async function fetchWeather(request, response) {
 // 		<add console.log down through try/catch block>
 // }
+
+// ------------------------------------- WEATHER --------------------------------------- //
 app.get('/weather', getWeather);
 
 async function getWeather (request, response) {
@@ -30,16 +32,13 @@ async function getWeather (request, response) {
 	// const lat = request.query.lat;
 	// const lon = request.query.lon;
 	console.log(process.env.WEATHER_API_KEY);
-
 	const searchQuery = request.query.searchQuery;
 	// (delete?) const cityObject = weatherData.find (city => city.city_name === searchQuery);
-		const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${searchQuery}&days=5`;
-
+		const weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${searchQuery}&days=5`;
 	try {
-		const apiResponse = await axios.get(url);
+		const apiResponse = await axios.get(weatherUrl);
 		console.log(apiResponse.data.data);
 		const forecast = apiResponse.data.data.map(day => new Forecast(day));
-		
 		response.send(forecast);	
 	} catch (error) {
 		console.log(error);
@@ -55,6 +54,38 @@ class Forecast {
 		this.desc = day.weather.description;
 	};
 }
+// ------------------------------------- MOVIES --------------------------------------- //
+app.get('/movies', getMovies);
+
+async function getMovies (request, response) {
+	console.log(request.query)
+
+	console.log(process.env.MOVIE_API_KEY);
+	const searchQuery = request.query.searchQuery;
+		const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}&format=json`;
+	try {
+		const apiResponse = await axios.get(movieUrl);
+		console.log(apiResponse.data); // may need to change 'apiResponse.data.data' depending on how data array comes back
+		const movieList = apiResponse.data.data.map(film => new movieList(film));
+		response.send(movieList);	
+	} catch (error) {
+		console.log(error);
+		response.status(500).send('server error');
+	}
+}
+
+class movieList {
+	constructor(film) {
+		this.title = film.title;
+		this.synopsis = film.overview;
+		this.averageVotes = film.average_votes;
+		this.totalVotes = film.total_votes;
+		this.img = film.image_url;
+		this.popularity = film.popularity;
+		this.releaseDate = film.released_on;
+	};
+}
+
 app.get('*', notFoundHandler)
 
 function notFoundHandler(request, response) {

@@ -24,8 +24,6 @@ npm install express, dotenv, cors, axios, bootstrap (if using)
 |:-------------:|:---------------:|------------|-------------|--------------------|---------------|
 | 1 hour        | Lab 07 - Task 1 | 4:45pm     | 5:00pm      | 15 minutes!        |               |
 | No estimate | Lab 07 - Tasks 2, 3 | ??? | 1:00pm | Endless Hours | Hexx King, Antoine Charette, Haustin Kimbrough |
-| 4 hours | Lab 08 | 4:00pm |  |  | Hexx, as always, saving my ass |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
+| 4 hours | Lab 08 | 4:00pm |  |  | Hexx (saving my ass as always) |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
