@@ -58,15 +58,13 @@ class Forecast {
 app.get('/movies', getMovies);
 
 async function getMovies (request, response) {
-	console.log(request.query)
-
-	console.log(process.env.MOVIE_API_KEY);
 	const searchQuery = request.query.searchQuery;
-		const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}&format=json`;
+	const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}`;
+	
 	try {
 		const apiResponse = await axios.get(movieUrl);
 		console.log(apiResponse.data.results); 
-		const movieList = apiResponse.data.results.map(film => new movieList(film));
+		const movieList = apiResponse.data.results.map(film => new MovieList(film));
 		response.send(movieList);	
 	} catch (error) {
 		console.log(error);
@@ -74,15 +72,14 @@ async function getMovies (request, response) {
 	}
 }
 
-class movieList {
+class MovieList {
 	constructor(film) {
 		this.title = film.title;
 		this.synopsis = film.overview;
-		this.averageVotes = film.average_votes;
-		this.totalVotes = film.total_votes;
-		this.img = film.image_url;
+		this.averageVotes = film.vote_average;
+		this.totalVotes = film.vote_count;
 		this.popularity = film.popularity;
-		this.releaseDate = film.released_on;
+		this.releaseDate = film.released_date;
 	};
 }
 
