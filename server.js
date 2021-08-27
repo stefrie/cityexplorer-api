@@ -24,7 +24,7 @@ app.use(cors());
 // 		<add console.log down through try/catch block>
 // }
 
-// ------------------------------------- WEATHER --------------------------------------- //
+
 app.get('/weather', getWeather);
 
 async function getWeather (request, response) {
@@ -54,7 +54,7 @@ class Forecast {
 		this.desc = day.weather.description;
 	};
 }
-// ------------------------------------- MOVIES --------------------------------------- //
+
 app.get('/movies', getMovies);
 
 async function getMovies (request, response) {
