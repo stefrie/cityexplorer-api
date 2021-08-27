@@ -65,8 +65,8 @@ async function getMovies (request, response) {
 		const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}&format=json`;
 	try {
 		const apiResponse = await axios.get(movieUrl);
-		console.log(apiResponse.data); // may need to change 'apiResponse.data.data' depending on how data array comes back
-		const movieList = apiResponse.data.data.map(film => new movieList(film));
+		console.log(apiResponse.data.results); 
+		const movieList = apiResponse.data.results.map(film => new movieList(film));
 		response.send(movieList);	
 	} catch (error) {
 		console.log(error);
