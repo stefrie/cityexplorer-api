@@ -27,3 +27,5 @@ npm install express, dotenv, cors, axios, bootstrap (if using)
 | 4 hours | Lab 08 | 4:00pm |  |  | Hexx (saving my ass as always) |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
+
+![WRRC2](./WRRC2.JPG)
