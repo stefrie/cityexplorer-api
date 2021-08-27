@@ -1,5 +1,5 @@
 const axios = require('axios');
-const inMemoryDB = require('./cache');
+// const inMemoryDB = require('./cache');
 
 async function fetchMovies (request, response) {
 	const searchQuery = request.query.searchQuery;
