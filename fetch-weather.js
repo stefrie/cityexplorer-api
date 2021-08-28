@@ -7,7 +7,7 @@ async function fetchWeather (request, response) {
 	// const lon = request.query.lon;
 	console.log(process.env.WEATHER_API_KEY);
 	const searchQuery = request.query.searchQuery;
-		const weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${searchQuery}&days=5`;
+		const weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${searchQuery}&days=3`;
 	try {
 		const apiResponse = await axios.get(weatherUrl);
 		console.log(apiResponse.data.data);
