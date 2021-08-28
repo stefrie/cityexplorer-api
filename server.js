@@ -12,7 +12,9 @@ const app = express();
 app.use(cors());
 
 // routes
-app.get('/', 'server connection successful');
+app.get('/', (req, res) => {
+	res.send('server connection successful');
+});
 app.get('/weather', fetchWeather);
 app.get('/movies', fetchMovies);
 app.get('*', notFound)
